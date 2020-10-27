@@ -62,10 +62,7 @@
 .field:hover{
     box-shadow: 1px 1px 4px #ddd;
 }
-.toggle-Wrapper{
-    padding: 15px;
-    background: #d6d6d629;
-}
+
 .dndHandle{
     cursor: pointer;
     color: #999;
