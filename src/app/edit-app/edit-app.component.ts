@@ -15,10 +15,11 @@ export class EditAppComponent implements OnInit {
   };
   success = false;
 
+  // <i  nzType="font-colors" ></i>
   fieldModels: Array<field> = [
     {
       type: "text",
-      icon: "fa-font",
+      icon: "font-colors",
       label: "Text",
       description: "Enter your name",
       placeholder: "Enter your name",
@@ -29,7 +30,7 @@ export class EditAppComponent implements OnInit {
     },
     {
       type: "email",
-      icon: "fa-envelope",
+      icon: "mail",
       required: true,
       label: "Email",
       description: "Enter your email",
@@ -42,7 +43,7 @@ export class EditAppComponent implements OnInit {
     },
     {
       type: "phone",
-      icon: "fa-phone",
+      icon: "mobile",
       label: "Phone",
       description: "Enter your phone",
       placeholder: "Enter your phone",
@@ -55,7 +56,7 @@ export class EditAppComponent implements OnInit {
     {
       type: "number",
       label: "Number",
-      icon: "fa-html5",
+      icon: "field-number",
       description: "Age",
       placeholder: "Enter your age",
       className: "form-control",
@@ -65,26 +66,26 @@ export class EditAppComponent implements OnInit {
     },
     {
       type: "date",
-      icon: "fa-calendar",
+      icon: "calendar",
       label: "Date",
       placeholder: "Date",
       className: "form-control",
     },
     {
       type: "datetime-local",
-      icon: "fa-calendar",
+      icon: "field-time",
       label: "DateTime",
       placeholder: "Date Time",
       className: "form-control",
     },
     {
       type: "textarea",
-      icon: "fa-text-width",
+      icon: "file-text",
       label: "Textarea",
     },
     {
       type: "paragraph",
-      icon: "fa-paragraph",
+      icon: "line-height",
       label: "Paragraph",
       placeholder: "Type your text to display here only",
     },
@@ -92,7 +93,7 @@ export class EditAppComponent implements OnInit {
       type: "checkbox",
       required: true,
       label: "Checkbox",
-      icon: "fa-list",
+      icon: "ordered-list",
       description: "Checkbox",
       inline: true,
       values: [
@@ -108,7 +109,7 @@ export class EditAppComponent implements OnInit {
     },
     {
       type: "radio",
-      icon: "fa-list-ul",
+      icon: "unordered-list",
       label: "Radio",
       description: "Radio boxes",
       values: [
@@ -124,7 +125,7 @@ export class EditAppComponent implements OnInit {
     },
     {
       type: "autocomplete",
-      icon: "fa-bars",
+      icon: "bars",
       label: "Select",
       description: "Select",
       placeholder: "Select",
@@ -146,14 +147,14 @@ export class EditAppComponent implements OnInit {
     },
     {
       type: "file",
-      icon: "fa-file",
+      icon: "upload",
       label: "File Upload",
       className: "form-control",
       subtype: "file",
     },
     {
       type: "button",
-      icon: "fa-paper-plane",
+      icon: "paper-clip",
       subtype: "submit",
       label: "Submit",
     },

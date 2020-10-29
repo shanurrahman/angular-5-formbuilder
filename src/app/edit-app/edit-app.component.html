@@ -1,31 +1,39 @@
 <div *ngIf="model && !report">
   <div nz-row nzJustify="space-between">
     <div nz-col nz-span="4">
-      <p>Customize your form by drag and drop below fields to the form area.</p>
+      <p>Customize your form by drag and drop </p>
       <!--a draggable element-->
       <div class="fields" *ngFor="let item of fieldModels">
-        <div class="field pointer shadow-bg" [dndDraggable]="item" [dndEffectAllowed]="'copy'"
-          (dndEnd)="onDragEnd($event)">
-          <i [ngClass]="item.icon" class="fa pull-left"></i>
-          <h5>{{item.label}}</h5>
+        <div [dndDraggable]="item" [dndEffectAllowed]="'copy'" (dndEnd)="onDragEnd($event)">
+
+          <nz-row>
+            <nz-col>
+              <i nz-icon nzTheme="outline" [nzType]="item.icon" style="font-size: 1.7rem;"></i>
+              <nz-divider nzType="vertical"></nz-divider>
+            </nz-col>
+            <nz-col>
+              <h4 nz-typography>{{item.label}}</h4>
+            </nz-col>
+          </nz-row>
         </div>
       </div>
 
     </div>
-    <div nz-col nz-span="20">
-      <form nz-form style="width: 50vw;" [style.backgroundColor]="model.theme.bgColor"
-        [style.color]="model.theme.textColor">
+    <div nz-col nz-span="20" style="width: 60vw;">
+      <form nz-form [style.backgroundColor]="model.theme.bgColor" [style.color]="model.theme.textColor">
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Form Name</nz-form-label>
           <nz-form-control [nzSpan]="14" [nzOffset]="6">
-            <input nz-input name="formName" type="text" [(ngModel)]="model.name" [ngModelOptions]="{standalone: true}"/>
+            <input nz-input name="formName" type="text" [(ngModel)]="model.name"
+              [ngModelOptions]="{standalone: true}" />
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
           <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="description">Description</nz-form-label>
           <nz-form-control [nzSpan]="14" [nzOffset]="6">
-            <input nz-input type="text" [(ngModel)]="model.description" name="description" [ngModelOptions]="{standalone: true}"/>
+            <input nz-input type="text" [(ngModel)]="model.description" name="description"
+              [ngModelOptions]="{standalone: true}" />
           </nz-form-control>
         </nz-form-item>
       </form>
@@ -40,59 +48,68 @@
           (dndCanceled)="onDragCanceled($event)" (dndMoved)="onDragged(item, model.attributes, 'move')"
           [dndEffectAllowed]="'all'" [dndDraggable]="item">
           <div nz-row>
-            <!-- <div nz-col nzSpan="2"><i class="fa fa-ellipsis-v dndHandle" dndHandle></i></div> -->
             <div nz-col nzSpan="14">
-              <!-- <i [ngClass]="item.icon" class="fa pull-left"></i>
-            <h5>{{item.label}}
-            <span *ngIf="item.required" class="red">*</span></h5> -->
-              <div *ngIf="item.type=='text'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <input nz-input type="text" id="{{item.name}}" placeholder="{{item.placeholder}}">
-              </div>
-              <div *ngIf="item.type=='email'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <input nz-input type="email" id="{{item.name}}" placeholder="{{item.placeholder}}">
-              </div>
-              <div *ngIf="item.type=='phone'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <input nz-input type="text" id="{{item.name}}" placeholder="{{item.placeholder}}">
-              </div>
-              <div *ngIf="item.type=='number'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <input nz-input type="number" id="{{item.name}}" min="{{item.min}}" max="{{item.max}}"
-                  placeholder="{{item.placeholder}}">
-              </div>
-              <div *ngIf="item.type=='date'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <input nz-input type="date" id="{{item.name}}" placeholder="{{item.placeholder}}">
-              </div>
-              <div *ngIf="item.type=='datetime-local'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <input nz-input type="datetime-local" id="{{item.name}}" placeholder="{{item.placeholder}}">
-              </div>
-              <div *ngIf="item.type=='textarea'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <textarea id="{{item.name}}" placeholder="{{item.placeholder}}">
-                      </textarea>
-              </div>
-              <div *ngIf="item.type=='file'">
-                <label>{{item.label}} (File can't be uploaded right now)</label> <label *ngIf="item.required"
-                  class="text-danger">*</label>
-                <input nz-input type="file" id="{{item.name}}" placeholder="{{item.placeholder}}">
-                <small class="form-text text-danger">(File can't be uploaded right now)</small>
-              </div>
+              <nz-form-item *ngIf="item.type=='text'">
+                <nz-form-label [nzSpan]="6" nzFor="email">{{item.label}}</nz-form-label>
+                <nz-form-control [nzSpan]="14"><input nz-input name="email" type="text" id="{{item.name}}" placeholder="{{item.placeholder}}"></nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item *ngIf="item.type=='email'">
+                <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
+                <nz-form-control [nzSpan]="14"><input nz-input type="email" id="{{item.name}}" placeholder="{{item.placeholder}}"></nz-form-control>
+              </nz-form-item>
+
+              <nz-form-item *ngIf="item.type=='phone'">
+                <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
+                <nz-form-control [nzSpan]="14">
+                  <input nz-input type="text" id="{{item.name}}" placeholder="{{item.placeholder}}">
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item *ngIf="item.type=='number'">
+                <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
+                <nz-form-control [nzSpan]="14"><input nz-input type="number" id="{{item.name}}" min="{{item.min}}" max="{{item.max}}"
+                  placeholder="{{item.placeholder}}"></nz-form-control>
+              </nz-form-item>
+              <nz-form-item *ngIf="item.type=='date'">
+                <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
+                <nz-form-control [nzSpan]="14">
+                  <nz-date-picker nz-input type="date" id="{{item.name}}"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item *ngIf="item.type=='datetime-local'">
+                <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
+                <nz-form-control [nzSpan]="14">
+                  <nz-date-picker nz-input type="date" id="{{item.name}}" nzShowTime></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item *ngIf="item.type=='textarea'">
+                <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
+                <nz-form-control>
+                  <textarea nz-input placeholder="Controlled autosize" 
+                    [nzAutosize]="{ minRows: 3, maxRows: 5 }" 
+                    id="{{item.name}}" placeholder="{{item.placeholder}}">
+                  </textarea>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item *ngIf="item.type=='file'">
+                <nz-form-label [nzSpan]="6">{{item.label}} (File can't be uploaded right now)</nz-form-label>
+                <nz-form-control [nzSpan]="14">
+                  <input nz-input type="file" id="{{item.name}}" placeholder="{{item.placeholder}}">
+                </nz-form-control>
+              </nz-form-item>
+
               <div *ngIf="item.type=='paragraph'">
                 <p class="form-text">{{item.placeholder}}</p>
               </div>
               <div *ngIf="item.type=='autocomplete'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                <label>{{item.label}}</label>
                 <select id="{{item.name}}">
                   <option *ngFor="let v of item.values" [value]="v.value">{{v.label}}</option>
                 </select>
                 <!-- <small class="form-text text-muted">{{item.description}}</small> -->
               </div>
               <div *ngIf="item.type=='checkbox'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+                <label>{{item.label}}</label>
                 <div *ngFor="let v of item.values">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6" [nzSpan]="14" [nzOffset]="6">
@@ -103,15 +120,18 @@
                   </nz-form-item>
                 </div>
               </div>
-              <div *ngIf="item.type=='radio'">
-                <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-                <div *ngFor="let v of item.values">
-                  <label class="cust-check-bx">
+              <nz-form-item *ngIf="item.type=='radio'">
+                <nz-form-label>{{item.label}}</nz-form-label>
+                <!-- <div *ngFor="let v of item.values">
+                  <label>
                     <input nz-input type="radio" [value]="v.value" name="{{item.name}}"> {{v.label}}
                     <span class="checkmark"></span>
                   </label>
-                </div>
-              </div>
+                </div> -->
+                <nz-radio-group [(ngModel)]="item.radioValue">
+                  <label *ngFor="let v of item.values" nz-radio [nzValue]="v.value">{{v.label}}</label>
+                </nz-radio-group>
+              </nz-form-item>
               <div *ngIf="item.type=='button'" class="btn-cont">
                 <input nz-input type="{{item.subtype}}" (click)="submit()" value="{{item.label}}"
                   class="btn btn-primary" id="{{item.name}}">
@@ -131,28 +151,32 @@
             </div>
             <nz-form-item>
               <nz-form-label [nzSm]="6" [nzXs]="24">Label</nz-form-label>
-              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.label" [ngModelOptions]="{standalone: true}"/>
+              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.label"
+                  [ngModelOptions]="{standalone: true}" />
               </nz-form-control>
             </nz-form-item>
             <nz-form-item>
               <nz-form-label [nzSm]="6" [nzXs]="24">Name</nz-form-label>
-              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.name" [ngModelOptions]="{standalone: true}" />
+              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.name"
+                  [ngModelOptions]="{standalone: true}" />
               </nz-form-control>
             </nz-form-item>
             <nz-form-item>
               <nz-form-label [nzSm]="6" [nzXs]="24">Placeholder</nz-form-label>
-              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text"
-                  [(ngModel)]="item.placeholder" [ngModelOptions]="{standalone: true}" />
+              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.placeholder"
+                  [ngModelOptions]="{standalone: true}" />
               </nz-form-control>
             </nz-form-item>
             <nz-form-item>
               <nz-form-label [nzSm]="6" [nzXs]="24">Regex</nz-form-label>
-              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.regex" [ngModelOptions]="{standalone: true}"/>
+              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.regex"
+                  [ngModelOptions]="{standalone: true}" />
               </nz-form-control>
             </nz-form-item>
             <nz-form-item *ngIf="item.regex">
               <nz-form-label [nzSm]="6" [nzXs]="24">Error text</nz-form-label>
-              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.errorText" [ngModelOptions]="{standalone: true}"/>
+              <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.errorText"
+                  [ngModelOptions]="{standalone: true}" />
               </nz-form-control>
             </nz-form-item>
 
@@ -161,14 +185,16 @@
               <div nz-col nzSpan="6">
                 <nz-form-item>
                   <nz-form-label [nzSm]="6" [nzXs]="24">Min</nz-form-label>
-                  <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.min" [ngModelOptions]="{standalone: true}"/>
+                  <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.min"
+                      [ngModelOptions]="{standalone: true}" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
               <div nz-col nzSpan="6">
                 <nz-form-item>
                   <nz-form-label [nzSm]="6" [nzXs]="24">Max</nz-form-label>
-                  <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.max" [ngModelOptions]="{standalone: true}"/>
+                  <nz-form-control [nzSpan]="14" [nzOffset]="6"><input nz-input type="text" [(ngModel)]="item.max"
+                      [ngModelOptions]="{standalone: true}" />
                   </nz-form-control>
                 </nz-form-item>
               </div>
@@ -197,14 +223,14 @@
                 <div nz-col nzSpan="10">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-                      <input nz-input type="text" [(ngModel)]="i.label" [ngModelOptions]="{standalone: true}"/>
+                      <input nz-input type="text" [(ngModel)]="i.label" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
                 <div nz-col nzSpan="10">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-                      <input nz-input type="text" [(ngModel)]="i.value" [ngModelOptions]="{standalone: true}"/>
+                      <input nz-input type="text" [(ngModel)]="i.value" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
@@ -218,14 +244,14 @@
                 <div nz-col nzSpan="10">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-                      <input nz-input type="text" [(ngModel)]="value.label" [ngModelOptions]="{standalone: true}"/>
+                      <input nz-input type="text" [(ngModel)]="value.label" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
                 <div nz-col nzSpan="10">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-                      <input nz-input type="text" [(ngModel)]="value.value" [ngModelOptions]="{standalone: true}"/>
+                      <input nz-input type="text" [(ngModel)]="value.value" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
@@ -297,43 +323,49 @@
       <div *ngIf="!success" class="col-12">
         <div *ngFor="let item of model.attributes" class="form-group">
           <div *ngIf="item.type=='text'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <input nz-input type="text" class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}"
               [(ngModel)]="item.value" [required]="item.required" [ngModelOptions]="{standalone: true}"
               autocomplete="off">
           </div>
           <div *ngIf="item.type=='email'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <input nz-input type="email" class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}"
               [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
           </div>
           <div *ngIf="item.type=='phone'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <input nz-input type="email" class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}"
               [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
           </div>
           <div *ngIf="item.type=='number'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <input nz-input type="number" class="form-control" id="{{item.name}}" min="{{item.min}}" max="{{item.max}}"
               placeholder="{{item.placeholder}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}"
               autocomplete="off">
           </div>
           <div *ngIf="item.type=='date'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <input nz-input type="date" class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}"
               [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
           </div>
           <div *ngIf="item.type=='datetime-local'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <input nz-input type="datetime-local" class="form-control" id="{{item.name}}"
               placeholder="{{item.placeholder}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}"
               autocomplete="off">
           </div>
           <div *ngIf="item.type=='textarea'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
-            <textarea class="form-control" id="{{item.name}}" placeholder="{{item.placeholder}}"
-              [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}" autocomplete="off">
-          </textarea>
+            <nz-form-item *ngIf="item.type=='textarea'">
+              <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
+              <nz-form-control>
+                <textarea nz-input placeholder="Controlled autosize" 
+                  [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}"
+                  [nzAutosize]="{ minRows: 3, maxRows: 5 }" 
+                  id="{{item.name}}" placeholder="{{item.placeholder}}">
+                </textarea>
+              </nz-form-control>
+            </nz-form-item>
           </div>
           <div *ngIf="item.type=='file'">
             <label>{{item.label}} (File can't be uploaded right now)</label> <label *ngIf="item.required"
@@ -346,7 +378,7 @@
             <p class="form-text">{{item.placeholder}}</p>
           </div>
           <div *ngIf="item.type=='autocomplete'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <select class="form-control" id="{{item.name}}" [(ngModel)]="item.value"
               [ngModelOptions]="{standalone: true}">
               <option *ngFor="let v of item.values" [value]="v.value">{{v.label}}</option>
@@ -354,7 +386,7 @@
             <!-- <small class="form-text text-muted">{{item.description}}</small> -->
           </div>
           <div *ngIf="item.type=='checkbox'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <div *ngFor="let v of item.values" class="inline-form-group">
               <label class="cust-check-bx">
                 <input nz-input type="checkbox" [value]="v.value" name="{{item.name}}" (click)="toggleValue(v)">
@@ -364,7 +396,7 @@
             </div>
           </div>
           <div *ngIf="item.type=='radio'">
-            <label>{{item.label}}</label> <label *ngIf="item.required" class="text-danger">*</label>
+            <label>{{item.label}}</label>
             <div *ngFor="let v of item.values" class="inline-form-group">
               <label class="cust-check-bx">
                 <input nz-input type="radio" [value]="v.value" name="{{item.name}}" [(ngModel)]="item.value"
