@@ -84,6 +84,7 @@ export class EditAppComponent implements OnInit {
       label: "Textarea",
     },
     {
+      value: "",
       type: "paragraph",
       icon: "line-height",
       label: "Paragraph",

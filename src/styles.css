@@ -53,12 +53,11 @@ You can add global styles to this file, and also import other style files
 }
 
 .dndDropArea {
-  padding: 10px;
+  min-height: 200px;
   /* border: dotted #ddd 2px; */
 }
 
 .dndDropArea.empty {
-  min-height: 200px;
   border: dotted #ddd 2px;
 }
 
