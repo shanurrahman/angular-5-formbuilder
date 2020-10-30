@@ -54,6 +54,7 @@ You can add global styles to this file, and also import other style files
 
 .dndDropArea {
   min-height: 200px;
+  height: calc(100%+40px);
   /* border: dotted #ddd 2px; */
 }
 

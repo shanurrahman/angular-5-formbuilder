@@ -216,52 +216,62 @@
             <div *ngIf="item.type=='radio'|| item.type=='checkbox' || item.type=='autocomplete'">
               <div nz-row>
                 <div nz-col nzSpan="8">
-                  <label>Label</label>
+                  <nz-form-item>
+                    <nz-form-control [nzSpan]="6" [nzOffset]="8">
+                      Label
+                    </nz-form-control>
+                  </nz-form-item>
                 </div>
                 <div nz-col nzSpan="8">
-                  <label>Value</label>
+                  <nz-form-item>
+                      <nz-form-control [nzOffset]="8">Value</nz-form-control>
+                    </nz-form-item>
                 </div>
                 <div nz-col nzSpan="8">
-                  <label>Action</label>
+                  <nz-form-item>
+                    <nz-form-control>
+                      <label>Action</label>
+                    </nz-form-control>
+                  </nz-form-item>
                 </div>
               </div>
-              <div *ngFor="let i of item.values; let valueIndex=index;" class="row">
-                <div nz-col nzSpan="10">
+              <div *ngFor="let i of item.values; let valueIndex=index;" nz-row>
+                <div nz-col nzSpan="8">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
                       <input nz-input type="text" [(ngModel)]="i.label" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
-                <div nz-col nzSpan="10">
+                <div nz-col nzSpan="8">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
                       <input nz-input type="text" [(ngModel)]="i.value" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
-                <div class="col-2">
+                <div nz-col nzSpan="8">
                   <nz-form-item>
                     <label (click)="item.values.splice(valueIndex,1)">remove</label>
                   </nz-form-item>
                 </div>
               </div>
-              <div class="row">
-                <div nz-col nzSpan="10">
+              <div nz-row>
+                <div nz-col nzSpan="8">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
                       <input nz-input type="text" [(ngModel)]="value.label" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
-                <div nz-col nzSpan="10">
+                <div nz-col nzSpan="8">
                   <nz-form-item>
                     <nz-form-control [nzSpan]="14" [nzOffset]="6">
                       <input nz-input type="text" [(ngModel)]="value.value" [ngModelOptions]="{standalone: true}" />
                     </nz-form-control>
                   </nz-form-item>
                 </div>
-                <div class="col-2">
+                <div nz-col nzSpan="8">
                   <nz-form-item>
                     <label (click)="addValue(item.values)">Add</label>
                   </nz-form-item>
@@ -310,8 +320,8 @@
 
 <!-- <pre *ngIf="model">{{model|json}}</pre> -->
 
-
-<div *ngIf="model" class="container marginT60  marginB30" style="max-width:500px;">
+<!-- form preview -->
+<div *ngIf="model" style="max-width:500px;">
   <div class="row" style="padding:30px;" [style.backgroundColor]="model.theme.bgColor"
     [style.color]="model.theme.textColor">
     <div class="col-12">
