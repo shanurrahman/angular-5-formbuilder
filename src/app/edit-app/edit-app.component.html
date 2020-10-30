@@ -139,7 +139,7 @@
               <nz-form-item *ngIf="item.type=='radio'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                 <nz-form-control [nzSpan]="14" [nzOffset]="6">
-                  <nz-radio-group [(ngModel)]="item.radioValue">
+                  <nz-radio-group [(ngModel)]="item.value">
                     <label *ngFor="let v of item.values" nz-radio [nzValue]="v.value">{{v.label}}</label>
                   </nz-radio-group>
                 </nz-form-control>
@@ -322,7 +322,6 @@
 
 
 <div *ngIf="model" style="max-width:500px;">
-
   <nz-page-header class="site-page-header" nzBackIcon>
     <nz-page-header-title>{{model.name}}</nz-page-header-title>
     <nz-page-header-subtitle>{{model.description}}</nz-page-header-subtitle>
@@ -343,45 +342,47 @@
               <nz-form-item *ngSwitchCase="'email'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                 <nz-form-control [nzSpan]="14">
-                  <input nz-input type="email" id="{{item.name}}" placeholder="{{item.placeholder}}">
+                  <input nz-input type="email" id="{{item.name}}" [(ngModel)]="item.value" placeholder="{{item.placeholder}}" [ngModelOptions]="{standalone: true}">
                 </nz-form-control>
               </nz-form-item>
 
               <nz-form-item *ngSwitchCase="'phone'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                 <nz-form-control [nzSpan]="14">
-                  <input nz-input type="text" id="{{item.name}}" placeholder="{{item.placeholder}}">
+                  <input nz-input type="text" id="{{item.name}}" placeholder="{{item.placeholder}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
                 </nz-form-control>
               </nz-form-item>
               <nz-form-item *ngSwitchCase="'number'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
-                <nz-form-control [nzSpan]="14"><input nz-input type="number" id="{{item.name}}" min="{{item.min}}"
-                    max="{{item.max}}" placeholder="{{item.placeholder}}"></nz-form-control>
+                <nz-form-control [nzSpan]="14">
+                  <input nz-input type="number" id="{{item.name}}" min="{{item.min}}" [(ngModel)]="item.value" 
+                    max="{{item.max}}" placeholder="{{item.placeholder}}" [ngModelOptions]="{standalone: true}">
+                  </nz-form-control>
               </nz-form-item>
               <nz-form-item *ngSwitchCase="'date'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                 <nz-form-control [nzSpan]="14">
-                  <nz-date-picker nz-input type="date" id="{{item.name}}"></nz-date-picker>
+                  <nz-date-picker nz-input type="date" id="{{item.name}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}"></nz-date-picker>
                 </nz-form-control>
               </nz-form-item>
               <nz-form-item *ngSwitchCase="'datetime-local'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                 <nz-form-control [nzSpan]="14">
-                  <nz-date-picker nz-input type="date" id="{{item.name}}" nzShowTime></nz-date-picker>
+                  <nz-date-picker nz-input type="date" id="{{item.name}}" nzShowTime [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}"></nz-date-picker>
                 </nz-form-control>
               </nz-form-item>
               <nz-form-item *ngSwitchCase="'textarea'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                 <nz-form-control [nzSpan]="14">
                   <textarea nz-input placeholder="Controlled autosize" [nzAutosize]="{ minRows: 3, maxRows: 5 }"
-                    id="{{item.name}}" placeholder="{{item.placeholder}}">
-            </textarea>
+                    id="{{item.name}}" placeholder="{{item.placeholder}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
+                  </textarea>
                 </nz-form-control>
               </nz-form-item>
               <nz-form-item *ngSwitchCase="'file'">
                 <nz-form-label [nzSpan]="6">{{item.label}} (File can't be uploaded right now)</nz-form-label>
                 <nz-form-control [nzSpan]="14">
-                  <input nz-input type="file" id="{{item.name}}" placeholder="{{item.placeholder}}">
+                  <input nz-input type="file" id="{{item.name}}" placeholder="{{item.placeholder}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
                 </nz-form-control>
               </nz-form-item>
 
@@ -390,7 +391,7 @@
                   <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                   <nz-form-control>
                     <nz-input-group [nzSuffix]="inputClearTpl">
-                      <input type="text" nz-input [(ngModel)]="item.value" placeholder="input with clear icon" />
+                      <input type="text" nz-input [(ngModel)]="item.value" placeholder="input with clear icon" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}"/>
                     </nz-input-group>
                   </nz-form-control>
                 </nz-form-item>
@@ -402,7 +403,7 @@
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                   <nz-form-control [nzSpan]="14">
-                    <nz-select id="{{item.name}}">
+                    <nz-select id="{{item.name}}" [(ngModel)]="item.value" [ngModelOptions]="{standalone: true}">
                       <nz-option *ngFor="let v of item.values" [nzValue]="v.value" [nzLabel]="v.label"></nz-option>
                     </nz-select>
                   </nz-form-control>
@@ -412,7 +413,7 @@
                 <nz-form-item>
                   <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                   <nz-form-control [nzSpan]="14">
-                    <label nz-checkbox *ngFor="let v of item.values" nz-checkbox [(ngModel)]="v.name"
+                    <label nz-checkbox *ngFor="let v of item.values" nz-checkbox [(ngModel)]="v.value"
                       [nzValue]="v.value" [ngModelOptions]="{standalone: true}">
                       <span>{{v.label}}</span>
                     </label>
@@ -422,7 +423,7 @@
               <nz-form-item *ngSwitchCase="'radio'">
                 <nz-form-label [nzSpan]="6">{{item.label}}</nz-form-label>
                 <nz-form-control [nzSpan]="14">
-                  <nz-radio-group [(ngModel)]="item.radioValue">
+                  <nz-radio-group [(ngModel)]="item.value">
                     <label *ngFor="let v of item.values" nz-radio [nzValue]="v.value">{{v.label}}</label>
                   </nz-radio-group>
                 </nz-form-control>
@@ -436,10 +437,12 @@
           </ng-container>
         </form>
       </div>
+
+      <button nz-button (click)="showModel()">Show model</button>
     </nz-page-header-content>
+    <nz-page-header-footer>
+      <pre>{{model|json}}</pre>
+    </nz-page-header-footer>
   </nz-page-header>
 </div>
 
-<pre *ngIf="show==1 && model">
-    {{model|json}}
-</pre>

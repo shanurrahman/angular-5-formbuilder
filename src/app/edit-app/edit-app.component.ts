@@ -23,8 +23,6 @@ export class EditAppComponent implements OnInit {
       label: "Text",
       description: "Enter your name",
       placeholder: "Enter your name",
-      className: "form-control",
-      subtype: "text",
       regex: "",
       handle: true,
     },
@@ -35,8 +33,6 @@ export class EditAppComponent implements OnInit {
       label: "Email",
       description: "Enter your email",
       placeholder: "Enter your email",
-      className: "form-control",
-      subtype: "text",
       regex: "^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+).([a-zA-Z]{2,5})$",
       errorText: "Please enter a valid email",
       handle: true,
@@ -47,8 +43,6 @@ export class EditAppComponent implements OnInit {
       label: "Phone",
       description: "Enter your phone",
       placeholder: "Enter your phone",
-      className: "form-control",
-      subtype: "text",
       regex: "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$",
       errorText: "Please enter a valid phone number",
       handle: true,
@@ -59,7 +53,6 @@ export class EditAppComponent implements OnInit {
       icon: "field-number",
       description: "Age",
       placeholder: "Enter your age",
-      className: "form-control",
       value: "20",
       min: 12,
       max: 90,
@@ -69,14 +62,12 @@ export class EditAppComponent implements OnInit {
       icon: "calendar",
       label: "Date",
       placeholder: "Date",
-      className: "form-control",
     },
     {
       type: "datetime-local",
       icon: "field-time",
       label: "DateTime",
       placeholder: "Date Time",
-      className: "form-control",
     },
     {
       type: "textarea",
@@ -130,7 +121,6 @@ export class EditAppComponent implements OnInit {
       label: "Select",
       description: "Select",
       placeholder: "Select",
-      className: "form-control",
       values: [
         {
           label: "Option 1",
@@ -150,13 +140,10 @@ export class EditAppComponent implements OnInit {
       type: "file",
       icon: "upload",
       label: "File Upload",
-      className: "form-control",
-      subtype: "file",
     },
     {
       type: "button",
       icon: "paper-clip",
-      subtype: "submit",
       label: "Submit",
     },
   ];
@@ -333,5 +320,9 @@ export class EditAppComponent implements OnInit {
     // },error=>{
     //   swal('Error',error.message,'error');
     // });
+  }
+
+  showModel() {
+    console.log(this.model);
   }
 }
